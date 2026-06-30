@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reparatii si Montaj Aer Conditionat — Vaida Bucuresti Ilfov</title>
+<meta name="description" content="Servicii profesionale complete pentru aer conditionat in Bucuresti si Ilfov. Reparatii, montaj, igienizare si incarcari cu freon. Peste 13 ani de experienta.">
+
+<!-- Open Graph / Social -->
+<meta property="og:title" content="Reparatii si Montaj Aer Conditionat — Vaida">
+<meta property="og:description" content="Servicii profesionale complete pentru aer conditionat in Bucuresti si Ilfov. Reparatii, montaj, igienizare si incarcari cu freon. Peste 13 ani de experienta.">
+<meta property="og:type" content="website">
+
+<!-- Tailwind + GSAP for animations -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<!-- Schema.org JSON-LD for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Vaida Aer Conditionat",
+  "telephone": "+40720662255",
+  "address": {"@type": "PostalAddress", "addressLocality": "Bucuresti", "addressCountry": "Romania"},
+  "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "120"}
+}
+</script>
+
+<style>
+:root {
+  --brand: #2563eb;        
+  --brand-dark: #1e40af;    
+  --accent: #38bdf8;      
+  --bg: #0a0a0f;
+  --surface: #14141c;
+  --text: #f5f5f5;
+  --text-dim: #94a3b8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Animated background gradient blobs */
+.blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: -1;
+}
+.blob-1 { width: 500px; height: 500px; background: var(--brand); top: -100px; left: -100px; animation: float 20s infinite ease-in-out; }
+.blob-2 { width: 400px; height: 400px; background: var(--accent); top: 40%; right: -100px; animation: float 25s infinite ease-in-out reverse; }
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, -40px) scale(1.1); }
+}
+
+/* Navigation */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  backdrop-filter: blur(12px);
+  background: rgba(10, 10, 15, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 16px 32px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav .logo { font-weight: 800; font-size: 1.25rem; color: var(--brand); letter-spacing: -0.02em; }
+nav ul { display: flex; gap: 28px; list-style: none; }
+nav a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+nav a:hover { color: var(--text); }
+.nav-cta {
+  background: var(--brand); color: #fff !important;
+  padding: 8px 18px; border-radius: 8px; font-weight: 600;
+  transition: all 0.2s;
+}
+.nav-cta:hover { background: var(--brand-dark); transform: translateY(-2px); }
+
+@media (max-width: 768px) { nav ul { display: none; } }
+
+/* Hero */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 80px 24px;
+  position: relative;
+}
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, var(--text) 0%, var(--brand) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero p { font-size: clamp(1.1rem, 2vw, 1.4rem); color: var(--text-dim); max-width: 700px; margin: 0 auto 40px; }
+.hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+.btn-primary, .btn-secondary {
+  padding: 14px 32px; border-radius: 10px;
+  font-weight: 600; text-decoration: none;
+  font-size: 1rem; display: inline-flex; align-items: center; gap: 8px;
+  transition: all 0.3s;
+  border: none; cursor: pointer;
+}
+.btn-primary {
+  background: var(--brand); color: #fff;
+  box-shadow: 0 10px 30px -10px var(--brand);
+}
+.btn-primary:hover { background: var(--brand-dark); transform: translateY(-3px); box-shadow: 0 20px 40px -10px var(--brand); }
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05); color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.btn-secondary:hover { background: rgba(255, 255, 255, 0.1); transform: translateY(-3px); }
+
+/* Stats strip */
+.stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 24px; max-width: 900px; margin: 60px auto; padding: 0 24px;
+}
+.stat { text-align: center; }
+.stat .num {
+  font-size: 2.5rem; font-weight: 800; color: var(--brand);
+  display: block; margin-bottom: 4px;
+}
+.stat .label { color: var(--text-dim); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* Section base */
+section { padding: 100px 24px; max-width: 1200px; margin: 0 auto; }
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -0.02em;
+  text-align: center; margin-bottom: 16px;
+}
+.section-subtitle { color: var(--text-dim); text-align: center; max-width: 600px; margin: 0 auto 64px; font-size: 1.1rem; }
+
+/* Services cards */
+.services-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+.service-card {
+  background: var(--surface); border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px; padding: 32px;
+  transition: all 0.3s; position: relative; overflow: hidden;
+}
+.service-card::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--brand), transparent);
+  transform: translateX(-100%); transition: transform 0.5s;
+}
+.service-card:hover { transform: translateY(-8px); border-color: var(--brand); }
+.service-card:hover::before { transform: translateX(100%); }
+.service-icon {
+  width: 56px; height: 56px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--brand), var(--accent));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 20px;
+}
+.service-card h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; }
+.service-card p { color: var(--text-dim); }
+
+/* Reviews */
+.reviews-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+.review-card {
+  background: var(--surface); border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px; padding: 28px;
+  position: relative;
+}
+.review-rating { color: #fbbf24; font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
+.review-text { font-style: italic; margin-bottom: 20px; color: #e2e8f0; }
+.review-author { display: flex; align-items: center; gap: 12px; }
+.review-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand), var(--accent));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: #fff;
+}
+.review-author-info { display: flex; flex-direction: column; }
+.review-author-name { font-weight: 600; }
+.review-author-meta { font-size: 0.85rem; color: var(--text-dim); }
+
+/* Contact section */
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 48px; align-items: start;
+}
+@media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
+
+.contact-info { display: flex; flex-direction: column; gap: 20px; }
+.contact-item {
+  display: flex; align-items: center; gap: 16px;
+  padding: 20px; background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  text-decoration: none; color: var(--text);
+  transition: all 0.2s;
+}
+.contact-item:hover { border-color: var(--brand); transform: translateX(8px); }
+.contact-item-icon {
+  width: 56px; height: 48px; border-radius: 10px;
+  background: rgba(37, 99, 235, 0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; font-weight: 800; color: var(--brand); letter-spacing: 0.05em;
+}
+.contact-item-text { display: flex; flex-direction: column; }
+.contact-item-label { font-size: 0.85rem; color: var(--text-dim); }
+.contact-item-value { font-weight: 600; }
+
+/* Contact form */
+.contact-form {
+  background: var(--surface); border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px; padding: 32px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.contact-form label { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 4px; }
+.contact-form input,
+.contact-form textarea {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  padding: 12px 16px; border-radius: 8px;
+  font-family: inherit; font-size: 0.95rem;
+  transition: border-color 0.2s;
+}
+.contact-form input:focus,
+.contact-form textarea:focus { outline: none; border-color: var(--brand); }
+.contact-form textarea { resize: vertical; min-height: 100px; }
+
+/* Footer */
+footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 40px 24px; text-align: center;
+  color: var(--text-dim); font-size: 0.9rem;
+}
+
+/* Floating WhatsApp button */
+.whatsapp-float {
+  position: fixed; bottom: 24px; right: 24px;
+  width: 60px; height: 60px; border-radius: 50%;
+  background: #25d366; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem; font-weight: 700; text-decoration: none;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+  z-index: 100;
+  animation: pulse-wa 2s infinite;
+  transition: transform 0.3s;
+}
+.whatsapp-float:hover { transform: scale(1.1); }
+@keyframes pulse-wa {
+  0%, 100% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4); }
+  50% { box-shadow: 0 8px 32px rgba(37, 211, 102, 0.7); }
+}
+
+/* Chatbot widget */
+.chatbot-toggle {
+  position: fixed; bottom: 24px; left: 24px;
+  width: 60px; height: 60px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand), var(--accent));
+  color: #fff; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem; font-weight: 700;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
+  z-index: 100;
+  transition: transform 0.3s;
+}
+.chatbot-toggle:hover { transform: scale(1.1); }
+
+.chatbot-window {
+  position: fixed; bottom: 100px; left: 24px;
+  width: 360px; max-width: calc(100vw - 48px); height: 500px; max-height: calc(100vh - 140px);
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  display: none; flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  overflow: hidden;
+}
+.chatbot-window.open { display: flex; animation: slideUp 0.3s ease-out; }
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.chatbot-header {
+  background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+  padding: 16px 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.chatbot-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; font-weight: 700;
+}
+.chatbot-title { font-weight: 700; }
+.chatbot-status { font-size: 0.75rem; opacity: 0.9; display: flex; align-items: center; gap: 4px; }
+.chatbot-status-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; }
+
+.chatbot-messages {
+  flex: 1; overflow-y: auto; padding: 16px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.chat-msg {
+  padding: 10px 14px; border-radius: 14px;
+  max-width: 85%; font-size: 0.92rem;
+  animation: fadeIn 0.3s;
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+.chat-msg.bot { background: rgba(255,255,255,0.05); align-self: flex-start; border-bottom-left-radius: 4px; }
+.chat-msg.user { background: var(--brand); align-self: flex-end; border-bottom-right-radius: 4px; }
+.chat-typing { display: flex; gap: 4px; padding: 12px 16px; }
+.chat-typing span {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--text-dim);
+  animation: typing 1.4s infinite;
+}
+.chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+.chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typing { 0%, 60%, 100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-6px); opacity: 1; } }
+
+.chatbot-input {
+  display: flex; gap: 8px; padding: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+.chatbot-input input {
+  flex: 1; background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text); padding: 10px 14px; border-radius: 8px;
+  font-family: inherit;
+}
+.chatbot-input input:focus { outline: none; border-color: var(--brand); }
+.chatbot-input button {
+  background: var(--brand); color: #fff; border: none;
+  padding: 10px 16px; border-radius: 8px; cursor: pointer;
+  font-weight: 600;
+}
+.chatbot-quick-replies {
+  display: flex; flex-wrap: wrap; gap: 6px; padding: 0 16px 8px;
+}
+.chatbot-quick-replies button {
+  background: rgba(37, 99, 235, 0.1); border: 1px solid rgba(37, 99, 235, 0.3);
+  color: var(--brand); padding: 6px 12px; border-radius: 16px;
+  font-size: 0.8rem; cursor: pointer;
+  transition: all 0.2s;
+}
+.chatbot-quick-replies button:hover { background: rgba(37, 99, 235, 0.2); }
+
+.reveal { opacity: 0; transform: translateY(40px); }
+</style>
+</head>
+<body>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+
+<!-- Navigation -->
+<nav>
+  <div class="logo">Vaida Aer Conditionat</div>
+  <ul>
+    <li><a href="#servicii">Servicii</a></li>
+    <li><a href="#recenzii">Recenzii</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="tel:+40720662255" class="nav-cta">Suna acum</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div>
+    <h1 class="reveal">Reparatii si Montaj Aer Conditionat</h1>
+    <p class="reveal">Servicii profesionale complete si rapide in Bucuresti si Ilfov. Reparatii, montaj, igienizare si incarcari complete cu freon.</p>
+    <div class="hero-ctas reveal">
+      <a href="https://wa.me/40720662255" class="btn-primary">
+        Scrie pe WhatsApp
+      </a>
+      <a href="tel:+40720662255" class="btn-secondary">Suna: 0720 662 255</a>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<div class="stats reveal">
+  <div class="stat"><span class="num">13+</span><span class="label">Ani experienta</span></div>
+  <div class="stat"><span class="num">100%</span><span class="label">Profesional</span></div>
+  <div class="stat"><span class="num">4.9</span><span class="label">Medie recenzii</span></div>
+  <div class="stat"><span class="num">24/7</span><span class="label">Disponibilitate</span></div>
+</div>
+
+<!-- Services -->
+<section id="servicii">
+  <h2 class="section-title reveal">Serviciile noastre</h2>
+  <p class="section-subtitle reveal">Asiguram interventii sigure si de calitate pentru orice tip de aparat de aer conditionat din Bucuresti si judetul Ilfov.</p>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">01</div>
+      <h3>Reparatii Complete</h3>
+      <p>Diagnosticare rapida si remediere defectiuni pentru unitati interne si externe, placi electronice si piese defecte.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">02</div>
+      <h3>Montaj Profesional</h3>
+      <p>Instalare autorizata si sigura pentru aparate noi sau second hand, optimizata pentru o durata lunga de viata.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">03</div>
+      <h3>Igienizare Profesionala</h3>
+      <p>Curatare profunda a filtrelor si turbinei pentru eliminarea mirosurilor neplacute, a bacteriilor si a prafului.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">04</div>
+      <h3>Incarcare cu Freon</h3>
+      <p>Verificarea presiunii din instalatie si completarea cu agent frigorific in parametri optimi de functionare.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">05</div>
+      <h3>Relocari si Mutari</h3>
+      <p>Demontaj si reinstalare rapida in alta locatie, cu modificarea sau prelungirea traseului frigorific unde este necesar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section id="recenzii">
+  <h2 class="section-title reveal">Ce spun clientii</h2>
+  <p class="section-subtitle reveal">Apreciat pentru seriozitate, preturi corecte si interventii executate la timp.</p>
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <div class="review-rating">Nota: 5.0 / 5.0</div>
+      <p class="review-text">"Am apelat pentru o igienizare si incarcare cu freon. Serviciul a fost prompt, curat si la un pret foarte bun. Recomand cu incredere!"</p>
+      <div class="review-author">
+        <div class="review-avatar">A</div>
+        <div class="review-author-info">
+          <span class="review-author-name">Andrei M.</span>
+          <span class="review-author-meta">Bucuresti</span>
+        </div>
+      </div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-rating">Nota: 5.0 / 5.0</div>
+      <p class="review-text">"Montajul a fost facut impecabil. Un profesionist desavarsit care cunoaste foarte bine meseria si lucreaza ordonat."</p>
+      <div class="review-author">
+        <div class="review-avatar">S</div>
+        <div class="review-author-info">
+          <span class="review-author-name">Simona V.</span>
+          <span class="review-author-meta">Ilfov</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <h2 class="section-title reveal">Contactati-ne</h2>
+  <p class="section-subtitle reveal">Suntem gata sa va ajutam cu orice solicitare legata de clima dumneavoastra.</p>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <a href="tel:+40720662255" class="contact-item reveal">
+        <div class="contact-item-icon">TEL</div>
+        <div class="contact-item-text">
+          <span class="contact-item-label">Sunati-ne direct</span>
+          <span class="contact-item-value">0720 662 255</span>
+        </div>
+      </a>
+      <a href="https://wa.me/40720662255" class="contact-item reveal">
+        <div class="contact-item-icon">WAPP</div>
+        <div class="contact-item-text">
+          <span class="contact-item-label">WhatsApp</span>
+          <span class="contact-item-value">Raspuns rapid la mesaje</span>
+        </div>
+      </a>
+      <div class="contact-item reveal">
+        <div class="contact-item-icon">LOC</div>
+        <div class="contact-item-text">
+          <span class="contact-item-label">Zona acoperita</span>
+          <span class="contact-item-value">Bucuresti si Ilfov</span>
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form reveal" onsubmit="handleContactSubmit(event)">
+      <div>
+        <label for="cf-name">Nume</label>
+        <input id="cf-name" type="text" required placeholder="Numele dumneavoastra">
+      </div>
+      <div>
+        <label for="cf-phone">Telefon</label>
+        <input id="cf-phone" type="tel" required placeholder="07xx xxx xxx">
+      </div>
+      <div>
+        <label for="cf-message">Mesaj</label>
+        <textarea id="cf-message" required placeholder="Descrieti problema sau serviciul solicitat..."></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="justify-content:center">Trimite mesaj</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  © <span id="year"></span> Vaida Aer Conditionat. Toate drepturile rezervate.
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/40720662255" class="whatsapp-float" aria-label="WhatsApp">
+  WA
+</a>
+
+<!-- Chatbot Widget -->
+<button class="chatbot-toggle" onclick="toggleChat()" aria-label="Asistent virtual">CHAT</button>
+<div class="chatbot-window" id="chatbot-window">
+  <div class="chatbot-header">
+    <div class="chatbot-avatar">ASIST</div>
+    <div>
+      <div class="chatbot-title">Asistent Virtual</div>
+      <div class="chatbot-status">
+        <div class="chatbot-status-dot"></div>
+        Online — raspuns instant
+      </div>
+    </div>
+  </div>
+  <div class="chatbot-messages" id="chat-messages">
+    <div class="chat-msg bot">Buna ziua! Cu ce va pot ajuta astazi referitor la aparatul de aer conditionat?</div>
+  </div>
+  <div class="chatbot-quick-replies" id="quick-replies">
+    <button onclick="sendQuick('Vreau o oferta de pret')">Vreau o oferta</button>
+    <button onclick="sendQuick('Care este timpul de raspuns?')">Timp raspuns</button>
+  </div>
+  <div class="chatbot-input">
+    <input type="text" id="chat-input" placeholder="Scrieti mesajul..." onkeypress="if(event.key==='Enter')sendMessage()">
+    <button onclick="sendMessage()">Trimite</button>
+  </div>
+</div>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+gsap.registerPlugin(ScrollTrigger);
+gsap.utils.toArray('.reveal').forEach(el => {
+  gsap.fromTo(el,
+    { opacity: 0, y: 40 },
+    { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 85%' } }
+  );
+});
+
+const CHAT_API = '#';  
+const CLIENT_ID = 'vaida_ac';    
+let chatHistory = [];
+
+function toggleChat() {
+  const w = document.getElementById('chatbot-window');
+  w.classList.toggle('open');
+  if (w.classList.contains('open')) document.getElementById('chat-input').focus();
+}
+
+function appendMessage(role, text) {
+  const messages = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'chat-msg ' + (role === 'user' ? 'user' : 'bot');
+  div.textContent = text;
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+  chatHistory.push({ role, content: text });
+}
+
+function showTyping() {
+  const messages = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.id = 'typing-indicator';
+  div.className = 'chat-typing';
+  div.innerHTML = '<span></span><span></span><span></span>';
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+}
+function hideTyping() {
+  const t = document.getElementById('typing-indicator');
+  if (t) t.remove();
+}
+
+async function sendMessage() {
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  appendMessage('user', text);
+  document.getElementById('quick-replies').style.display = 'none';
+  showTyping();
+
+  setTimeout(() => {
+    hideTyping();
+    appendMessage('assistant', 'Pentru programare rapida, va rugam sa ne contactati direct la 0720 662 255 sau pe WhatsApp.');
+  }, 800);
+}
+
+function sendQuick(text) {
+  document.getElementById('chat-input').value = text;
+  sendMessage();
+}
+
+async function handleContactSubmit(e) {
+  e.preventDefault();
+  const data = {
+    name: document.getElementById('cf-name').value,
+    phone: document.getElementById('cf-phone').value,
+    message: document.getElementById('cf-message').value,
+    client_id: CLIENT_ID,
+  };
+  const wa = `https://wa.me/40720662255?text=${encodeURIComponent(`Salut! Sunt ${data.name} (${data.phone}). ${data.message}`)}`;
+  window.open(wa, '_blank');
+  e.target.reset();
+}
+</script>
+
+</body>
+</html>
